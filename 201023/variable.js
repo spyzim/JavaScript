@@ -1,8 +1,10 @@
 'use strict';
 
-// Variable
+// Variable (read and write), mutable
 // let (ES6 에서 추가됨)
+// block scope
 let globalName = 'global name'; //글로벌 변수
+
 {
 let name = 'Ray';
 console.log(name);
@@ -10,6 +12,7 @@ name = 'hello';
 console.log(name);
 console.log(globalName)
 }
+
 console.log(name);
 console.log(globalName)
 
@@ -22,11 +25,18 @@ console.log(globalName)
 }
 console.log(age)
 
-// Constance
+// Constant (read only) - 더 바람직한 방법이다. immutable
 // 값의 최초 선언과 동시에 값이 변경되지 않는다.
 // 보안에 좋음
 const daysInWeek = 7;
 const maxNumber = 5;
+
+// Immutable data types: primitive types, frozen objects (i.e. object.freeze())
+// Mutable data types: all objects by default are mutable in JS
+// favor immutable data type always for a few reasons:
+// -security
+// -thread safety
+// - reduce human mistakes
 
 // Variable types
 // 1. primitive type : 더 이상 작은 단위로 나눠질 수 없는 한 가지 단위(single item) - number, string, boolean, null, undefined, symbol
@@ -39,7 +49,7 @@ let type = typeof count
 console.log('value: %d, type: %s', count, type );
 console.log('value: ${size}, type: ${typeof size}');
 
-// number - special numeric values: infinity, -infinity, NaN(Not na Number)
+// number - special numeric values: infinity, -infinity, NaN(Not an Number)
 const infinity = 1 / 0;
 const negativeInfinity = -1 / 0;
 const nAn = 'not a number' / 2;
@@ -56,7 +66,7 @@ const char = 'c';
 const brendan = 'brendan';
 const greeting = 'hello' + brendan;
 console.log('value: %s, type: %s', greeting, typeof greeting);
-const helloBob = 'hi ${brendan}!';  //template literals (string)
+const helloBob = 'hi ${brendan}!';  //template literals (string) -> {} 로 변수에 담긴 값을 반환
 console.log('%s %s', helloBob, typeof helloBob)
 
 
@@ -66,7 +76,7 @@ console.log('%s %s', helloBob, typeof helloBob)
 let nothing = null;
 let x;  //undefined
 
-// symbol, create unique identifiers for objects 고유한 식별자
+// symbol = create unique identifiers for objects 고유한 식별자
 const symbol1 = Symbol('id');
 const symbol2 = Symbol('id');
 console.log(symbol1 === symbol2);
@@ -76,14 +86,14 @@ console.log(gSymbol1 === gSymbol2); // true
 console.log('%s %s', symbol1.description, typeof symbol1)
 
 
-// object, real-life objct, data structure
+// object = real-life objct, data structure
 const ray = { name: 'ray', age: 26 };
-ray.age = 27;   // object 는 const 이지만, 그 안의 값은 변경 가능
+ray.age = 27;   // object 는 const 이지만, 그 안의 값은 변경 가능, 
 
 
 // Dynamic typing: dynamically typed language 선언 시 타입을 선언하지 않고 프로그램이 동작할 때, 할당된 값에 따라 type 이 변할 수 있다.
 let text = 'hello';
-console.log(text.charAt(0));
+console.log(text.charAt(0));    // charAt(0) 은 인덱싱 방법
 console.log('%s %s',text, typeof text);
 text = 1;
 console.log('%d %s', text, typeof text); 
